@@ -1,0 +1,3 @@
+# Fintoc sample app
+
+Work in progress ...
