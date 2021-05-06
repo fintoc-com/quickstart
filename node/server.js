@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const Fintoc = require('fintoc');
+const moment = require('moment');
 
 dotenv.config();
-let linkToken = null;
+let linkToken = '';
 
 const fintoc = new Fintoc(process.env.SECRET_KEY);
 const app = express();
@@ -15,18 +16,8 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get('/api/movements', (req, res) => {
-  const movements = [
-    { id: 1, amount: 5000, type: 'inbound' },
-    { id: 2, amount: 2000, type: 'outbound' },
-  ];
-  res.json(movements);
-});
-
-app.get('/api/accounts/:linkId', async (req, res) => {
+app.get('/api/accounts', async (req, res) => {
   try {
-    // Find link_token with linkId in path params
-    // const link = await fintoc.getLink(process.env.LINK_TOKEN); // ordinaria
     const link = await fintoc.getLink(linkToken);
     const accounts = link.findAll({ type_: 'checking_account' });
     res.json(accounts);
@@ -35,10 +26,20 @@ app.get('/api/accounts/:linkId', async (req, res) => {
   }
 });
 
+app.get('/api/accounts/:accountId/movements', async (req, res) => {
+  try {
+    const startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
+    const link = await fintoc.getLink(linkToken);
+    const account = link.find({ id_: req.params.accountId });
+    const lastMonthMovements = await account.getMovements({ since: startOfMonth });
+    res.json(lastMonthMovements);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 app.post('/api/link_token', (req, res) => {
-  console.log(req.body);
   linkToken = req.body.data.link_token;
-  console.log(`New link token for ${req.body.data.username} (${req.body.data.holder_type}): ${linkToken}`);
   res.send('Post request to /api/link_token');
 });
 

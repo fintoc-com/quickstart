@@ -38,8 +38,7 @@ class ConnectLink extends Component {
       publicKey: 'pk_test_rnoxbcS4fR845yZBLZpbVjezT9TxvagQ',
       holderType: 'individual', // business or individual
       product: 'movements', // movements or suscription
-      webhookUrl: 'https://687f5e5b6dd9.ngrok.io/api/link_token',
-      // webhookUrl: 'https://webhook.site/53e760a6-877b-4736-b738-ce6de1af77b3',
+      webhookUrl: 'https://3de9533bd289.ngrok.io/api/link_token',
       onSuccess: this.handleSuccess,
       onExit: this.handleExit,
     };

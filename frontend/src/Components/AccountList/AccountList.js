@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
 import './AccountList.css';
+import { formatAmount } from '../../helpers/utils';
 
 function AccountList(props) {
   const [accounts, setAccounts] = useState([]);
   useEffect(async () => {
     // When component mounts
-    const response = await fetch(`/api/accounts/${props.linkId}`);
+    const response = await fetch(`/api/accounts?linkId=${props.linkId}`);
     const data = await response.json();
     setAccounts(data);
   }, []);
+
+  const handleButtonClick = (event) => {
+    props.setAccountId(event.target.getAttribute('account-id'));
+  };
 
   return (
     <div className="AccountList">
@@ -24,14 +29,14 @@ function AccountList(props) {
           </tr>
         </thead>
         <tbody>
-          {this.state.accounts.map((account) => (
+          {accounts.map((account) => (
             <tr key={account.id}>
               <td>{account.name}</td>
               <td>{account.holderName}</td>
-              <td>{account.balance.available}</td>
-              <td>{account.balance.current}</td>
+              <td>{formatAmount(account.balance.available)}</td>
+              <td>{formatAmount(account.balance.current)}</td>
               <td>
-                <button>Ver</button>
+                <button onClick={handleButtonClick} account-id={account.id}>Ver</button>
               </td>
             </tr>
           ))}
