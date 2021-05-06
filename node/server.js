@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const Fintoc = require('fintoc');
 
 dotenv.config();
+let linkToken = null;
 
 const fintoc = new Fintoc(process.env.SECRET_KEY);
 const app = express();
@@ -22,14 +23,21 @@ app.get('/api/movements', (req, res) => {
   res.json(movements);
 });
 
-app.get('/api/statement', (req, res) => {
-  fintoc.getLink(process.env.LINK_TOKEN);
-  res.send('jeje pa que quere saber eso');
+app.get('/api/accounts/:linkId', async (req, res) => {
+  try {
+    // Find link_token with linkId in path params
+    // const link = await fintoc.getLink(process.env.LINK_TOKEN); // ordinaria
+    const link = await fintoc.getLink(linkToken);
+    const accounts = link.findAll({ type_: 'checking_account' });
+    res.json(accounts);
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 app.post('/api/link_token', (req, res) => {
-  // console.log(req.body);
-  const linkToken = req.body.data.link_token;
+  console.log(req.body);
+  linkToken = req.body.data.link_token;
   console.log(`New link token for ${req.body.data.username} (${req.body.data.holder_type}): ${linkToken}`);
   res.send('Post request to /api/link_token');
 });

@@ -23,11 +23,9 @@ class ConnectLink extends Component {
     document.body.appendChild(script);
   }
 
-  // eslint-disable-next-line no-unused-vars
   handleSuccess(params) {
     // console.log('Success', params);
-    this.props.setLinkId('algun token');
-    // Pedir el link token
+    this.props.setLinkId(params.id);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -40,7 +38,7 @@ class ConnectLink extends Component {
       publicKey: 'pk_test_rnoxbcS4fR845yZBLZpbVjezT9TxvagQ',
       holderType: 'individual', // business or individual
       product: 'movements', // movements or suscription
-      webhookUrl: 'https://1ea8fc13f29a.ngrok.io/api/link_token',
+      webhookUrl: 'https://687f5e5b6dd9.ngrok.io/api/link_token',
       // webhookUrl: 'https://webhook.site/53e760a6-877b-4736-b738-ce6de1af77b3',
       onSuccess: this.handleSuccess,
       onExit: this.handleExit,

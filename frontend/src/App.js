@@ -12,14 +12,14 @@ function App() {
 
   //   window.Fintoc.create({});
   // },[])
-  const [linkId, setLinkId] = useState('');
+  const [linkId, setLinkId] = useState(''); // Change to O8N9X6jiA1KXyVBv to test account list
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       {!linkId && <ConnectLink setLinkId={setLinkId}/>}
-      {linkId && <AccountList />}
+      {linkId && <AccountList linkId={linkId}/>}
     </div>
   );
 }
