@@ -14,7 +14,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       {!linkId && <ConnectLink setLinkId={setLinkId} />}
-      {linkId && !accountId && <AccountList linkId={linkId} setAccountId={setAccountId} />}
+      {linkId && !accountId
+        && <AccountList linkId={linkId} setAccountId={setAccountId} setLinkId={setLinkId} />}
       {linkId && accountId
         && <MovementList linkId={linkId} accountId={accountId} setAccountId={setAccountId} />}
 

@@ -22,6 +22,7 @@ app.get('/api/accounts', async (req, res) => {
     const accounts = link.findAll({ type_: 'checking_account' });
     res.json(accounts);
   } catch (error) {
+    res.status(400);
     res.json(error);
   }
 });
@@ -34,6 +35,7 @@ app.get('/api/accounts/:accountId/movements', async (req, res) => {
     const lastMonthMovements = await account.getMovements({ since: startOfMonth });
     res.json(lastMonthMovements);
   } catch (error) {
+    res.status(400);
     res.json(error);
   }
 });
