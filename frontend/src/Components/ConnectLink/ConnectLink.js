@@ -1,59 +1,46 @@
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
+import useScript from 'react-script-hook';
 import './ConnectLink.css';
 
-class ConnectLink extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scriptLoaded: false,
-      widgetOpen: false,
-    };
-    this.handleWidget = this.handleWidget.bind(this);
-    this.handleSuccess = this.handleSuccess.bind(this);
-    this.handleExit = this.handleExit.bind(this);
-    this.widget = null;
-  }
+const widgetOptions = {
+  publicKey: process.env.REACT_APP_PUBLIC_KEY,
+  holderType: 'individual', // business or individual
+  product: 'movements', // movements or suscription
+  webhookUrl: process.env.REACT_APP_WEBHOOK_URL,
+};
 
-  componentDidMount() {
-    const script = document.createElement('script');
-    script.src = 'https://js.fintoc.com/v1/';
-    script.async = true;
-    script.onload = () => this.handleWidget();
+function ConnectLink(props) {
+  const [isOpen, setIsOpen] = useState(true);
+  const [loadingScript, errorScript] = useScript({ src: 'https://js.fintoc.com/v1/' });
 
-    document.body.appendChild(script);
-  }
-
-  handleSuccess(params) {
-    // console.log('Success', params);
-    this.props.setLinkId(params.id);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  handleExit() {
-    // console.log('Exit', this.state);
-  }
-
-  handleWidget() {
+  const handleSuccess = (params) => {
+    props.setLinkId(params.id);
+  };
+  const openWidget = () => setIsOpen(true);
+  const closeWidget = () => setIsOpen(false);
+  useEffect(() => {
+    if (!isOpen) return;
+    if (loadingScript) return;
+    if (errorScript || !window.Fintoc) return;
     const params = {
-      publicKey: 'pk_test_rnoxbcS4fR845yZBLZpbVjezT9TxvagQ',
-      holderType: 'individual', // business or individual
-      product: 'movements', // movements or suscription
-      webhookUrl: 'https://3de9533bd289.ngrok.io/api/link_token',
-      onSuccess: this.handleSuccess,
-      onExit: this.handleExit,
+      ...widgetOptions,
+      onSuccess: handleSuccess,
+      onExit: closeWidget,
     };
-    // console.log(params);
-    this.widget = window.Fintoc.create(params);
-    this.widget.open();
-  }
+    const widget = window.Fintoc.create(params);
+    widget.open();
+  }, [loadingScript, errorScript, isOpen]);
 
-  render() {
-    return (
+  return (
+    <div>
       <h1 className='ConnectLink'>
-        Conectar Link {this.state.scriptLoaded}
+        Conecta tu cuenta
       </h1>
-    );
-  }
+      <button onClick={openWidget}>
+        Conectar
+      </button>
+    </div>
+  );
 }
 
 export default ConnectLink;
