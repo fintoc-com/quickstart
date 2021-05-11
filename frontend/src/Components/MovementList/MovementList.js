@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './MovementList.css';
 import { formatAmount, formatDate } from '../../helpers/utils';
 
 function MovementList(props) {
@@ -25,31 +24,55 @@ function MovementList(props) {
   };
 
   return (
-    <div className="MovementList">
-        <button onClick={handleBack}>Atrás</button>
-        <h2>Movimientos de la cuenta</h2>
-        {isLoading && <p>Cargando...</p>}
-        {!isLoading && error && <p>{error}</p>}
-        {!isLoading && !error
+    <div className="container mt-3 mx-auto">
+        <button onClick={handleBack} className="text-fintocBlue">Atrás</button>
+        <h2 className="text-2xl font-semibold leading-tight">Movimientos de la cuenta</h2>
+        {error && (
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold">Error</p>
+            <p>{error || 'Se produjo un error'}</p>
+          </div>
+        )}
+        {!error
           && (
-            <table>
-              <thead>
-                <tr>
-                  <td>Fecha contable</td>
-                  <td>Monto</td>
-                  <td>Descripción</td>
-                </tr>
-              </thead>
-              <tbody>
-                {movements.map((movement) => (
-                  <tr key={movement.id}>
-                    <td>{formatDate(movement.postDate)}</td>
-                    <td>{movement.currency} {formatAmount(movement.amount)}</td>
-                    <td>{movement.description}</td>
+            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mt-3">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >Fecha contable</th>
+                    <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >Monto</th>
+                    <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >Descripción</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {!isLoading && movements.map((movement) => (
+                    <tr key={movement.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black-500">{formatDate(movement.postDate)}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black-500">{movement.currency} {formatAmount(movement.amount)}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black-500">{movement.description}</td>
+                    </tr>
+                  ))}
+                  {isLoading && (
+                    <tr className="animate-pulse">
+                      <td className="h-4 bg-gray-200 mt-3 mb-6"></td>
+                      <td className="h-4 bg-gray-200 mt-3 mb-6"></td>
+                      <td className="h-4 bg-gray-200 mt-3 mb-6"></td>
+                      <td className="h-4 bg-gray-200 mt-3 mb-6"></td>
+                      <td className="h-4 bg-gray-200 mt-3 mb-6"></td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           )}
       </div>
   );

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import useScript from 'react-script-hook';
-import './ConnectLink.css';
 
 const widgetOptions = {
   publicKey: process.env.REACT_APP_PUBLIC_KEY,
@@ -32,13 +31,21 @@ function ConnectLink(props) {
   }, [loadingScript, errorScript, isOpen]);
 
   return (
-    <div>
-      <h1 className='ConnectLink'>
-        Conecta tu cuenta
-      </h1>
-      <button onClick={openWidget}>
-        Conectar
-      </button>
+    <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+      <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center">
+          <span className="block">List@ para probar fintoc?</span>
+          <span className="block text-fintocBlue">Conecta tu cuenta para comenzar</span>
+      </h2>
+      <div className="mt-8">
+        <div className="flex justify-center">
+          <button
+            onClick={openWidget}
+            className="align-middle px-12 py-5 border border-transparent text-base font-medium rounded-md text-white bg-fintocBlue hover:shadow-2xl"
+          >
+            Conectar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
