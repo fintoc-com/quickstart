@@ -1,0 +1,29 @@
+{
+  "name": "fintoc-quickstart",
+  "version": "1.0.0",
+  "description": "Fintoc quickstart with React and Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd ../frontend && npm start",
+    "install-client": "cd ../frontend && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Paulina Araya",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "dotenv": "^8.5.1",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "express": "^4.17.1",
+    "fintoc": "^0.1.0",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
