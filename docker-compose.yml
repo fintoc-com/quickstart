@@ -1,0 +1,58 @@
+# X-COMMON-VARIABLES
+x-backend-environment: &backend-environment
+  SECRET_KEY: ${SECRET_KEY}
+x-frontend-environment: &frontend-environment
+  REACT_APP_PUBLIC_KEY: ${REACT_APP_PUBLIC_KEY}
+  REACT_APP_WEBHOOK_URL: ${REACT_APP_WEBHOOK_URL}
+  REACT_APP_BACKEND_HOST: ${REACT_APP_BACKEND_HOST}
+x-backend-networks: &backend-networks
+  - backend_network
+x-backend-ports: &backend-ports
+  - 5000:5000
+
+version: '3.8'
+services:
+  #############################
+  # Backend services
+  #############################
+  node:
+    container_name: fintoc_node
+    build:
+      dockerfile: Dockerfile
+      context: ./node
+    ports: *backend-ports
+    environment:
+      <<: *backend-environment
+    networks: *backend-networks
+  ruby:
+    container_name: fintoc_ruby
+    build:
+      dockerfile: Dockerfile
+      context: ./ruby
+    ports: *backend-ports
+    environment:
+      <<: *backend-environment
+    networks: *backend-networks
+  #############################
+  # Frontend services
+  #############################
+  frontend:
+    container_name: fintoc_frontend
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    ports:
+      - 3000:3000
+    environment:
+      <<: *frontend-environment
+    networks:
+      - backend_network
+      - frontend_network
+
+networks:
+  frontend_network:
+    name: frontend_network
+    driver: bridge
+  backend_network:
+    name: backend_network
+    driver: bridge
