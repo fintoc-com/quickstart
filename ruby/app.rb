@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require 'dotenv'
-Dotenv.load
 require 'sinatra'
 require 'fintoc'
+Dotenv.load
 
 set :port, 5000
+set :protection, :except => [:json_csrf]
 
 link_token = ''
 
