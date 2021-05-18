@@ -1,7 +1,14 @@
 #.env
 .env
 
-# dependency directories
+# Dependency directories
 node_modules/
 
+# Jetbrain
+.idea
+
+# VSCode
+.vscode
+
+# OSX
 .DS_Store
