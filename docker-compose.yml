@@ -24,6 +24,15 @@ services:
     environment:
       <<: *backend-environment
     networks: *backend-networks
+  python:
+    container_name: fintoc_python
+    build:
+      dockerfile: Dockerfile
+      context: ./python
+    ports: *backend-ports
+    environment:
+      <<: *backend-environment
+    networks: *backend-networks
   ruby:
     container_name: fintoc_ruby
     build:
