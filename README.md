@@ -2,9 +2,6 @@
 Fintoc Quickstart is the repository that allows you to test Fintoc locally using the Fintoc Widget and the Fintoc SDKs.
 The Fintoc Quickstart repository has a frontend application written in Vue.js, which integrates the Widget, as well as multiple backend applications that use the languages supported by the Fintoc SDKs.
 
-# Table of contents
-
-
 # 1. Clone the repository
 Clone the repository using your prefered terminal:
 <table>
@@ -107,28 +104,135 @@ To run the applications directly it is necessary to have the language installed 
 * ruby: 2.7 or higher
 
 ### Commands
-#### Frontend
+* ### Frontend
 ```shell
 $ cd frontend
 $ npm install
 $ npm start
 ```
-#### Node
+* ### Node
 ```shell
 $ cd node
 $ npm install
 $ npm start
 ```
-#### Ruby
+* ### Ruby
 ```shell
 $ cd ruby
 $ bundle install
 $ ruby 
 ```
 
-
 ## 3.3 Run + Docker
-###Prerequisites
+### Prerequisites
+To run Fintoc Quickstart with Docker you need to have:
+The requirements more in detail below:
+* Choose [**Docker**](https://docs.docker.com/get-docker/) depending on your operating system.
+* Have [**GNU make**](https://www.gnu.org/software/make/manual/make.html).
 
-Work in progress...
+### Commands
+* ### help
+Show commands
+```shell
+$ make help
+```
+```shell
+# Print
+Usage: make COMMAND [OPTIONS]
 
+Options:
+ language=[language] - The language can be any of the supported languages such as: node, ruby or python.
+
+Commands:
+ start		Start the containers (and builds them if they don't exist).
+ build		Build the Docker images.
+ destroy	Destroy the containers.
+ stop		Stop the containers.
+ restart	Restart the containers.
+ logs		Show container logs.
+```
+
+* ### start
+Start the containers (and builds them if they don't exist).
+```shell
+$ make start language=[language]
+```
+```shell
+# Print
+Creating network "backend_network" with driver "bridge"
+Creating network "frontend_network" with driver "bridge"
+Creating fintoc_node     ... done
+Creating fintoc_frontend ... done
+```
+
+* ### build
+Build the Docker images.
+```shell
+$ make build
+```
+
+* ### destroy
+Destroy the containers.
+```shell
+$ make destroy
+```
+```shell
+# Print
+Stopping fintoc_frontend ... done
+Stopping fintoc_node     ... done
+Removing fintoc_frontend ... done
+Removing fintoc_node     ... done
+Removing network backend_network
+Removing network frontend_network
+```
+
+* ### stop
+Stop the containers.
+```shell
+$ make stop
+```
+```shell
+# Print
+Stopping fintoc_node     ... done
+Stopping fintoc_frontend ... done
+```
+
+* ### restart
+Restart the containers.
+```shell
+$ make restart
+```
+```shell
+# Print
+Removing fintoc_node     ... done
+Removing fintoc_frontend ... done
+Removing network backend_network
+Removing network frontend_network
+Docker Compose is now in the Docker CLI, try `docker compose up`
+
+Creating network "backend_network" with driver "bridge"
+Creating network "frontend_network" with driver "bridge"
+Creating fintoc_ruby     ... done
+Creating fintoc_frontend ... done
+```
+
+            
+* ### logs
+Show containers logs.
+```shell
+$ make logs
+```
+```shell
+Attaching to fintoc_frontend, fintoc_node
+fintoc_node |
+fintoc_node | > fintoc-quickstart@1.0.0 start /opt/app
+fintoc_node | > node server.js
+fintoc_node |
+fintoc_node | Server started on port 5000
+fintoc_frontend |
+fintoc_frontend | > frontend@0.1.0 start /opt/app
+fintoc_frontend | > craco start
+fintoc_frontend |
+fintoc_frontend | ℹ ｢wds｣: Project is running at http://172.25.0.3/
+...
+```
