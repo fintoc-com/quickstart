@@ -1,6 +1,6 @@
 # Fintoc Quickstart
 Fintoc Quickstart is the repository that allows you to test Fintoc locally using the Fintoc Widget and the Fintoc SDKs.
-The Fintoc Quickstart repository has a frontend application written in Vue.js, which integrates the Widget, as well as multiple backend applications that use the languages supported by the Fintoc SDKs.
+The Fintoc Quickstart repository has a frontend application written in React, which integrates the Widget, as well as multiple backend applications that use the languages supported by the Fintoc SDKs.
 
 # 1. Clone the repository
 Clone the repository using your prefered terminal:
@@ -73,7 +73,7 @@ Fintoc Quickstart allows you to run the services in two ways, directly or with [
 Widget integration requires exposing a backend endpoint (Webhook) to the internet, so that Fintoc can send a link_token to the backend application and with this access the necessary information.
 > **Note:** link_token is the token that allows access to the information belonging to the user who started the session. More information about the Widget can be found at [docs.fintoc.com/docs/usando-el-widget#flujo-del-widget](https://docs.fintoc.com/docs/usando-el-widget#flujo-del-widget).
 
-For this we will use [ngrok](https://ngrok.com/), which is a cross-platform program that enables developers to expose local servers behind NATs and firewalls to the public internet over secure tunnels with miniaml effort.
+For this we will use [ngrok](https://ngrok.com/), which is a cross-platform program that enables developers to expose local servers behind NATs and firewalls to the public internet over secure tunnels with minimal effort.
 In this way, using **ngrok** we can expose the backend (and the webhook) so that Fintoc can communicate with it.
 
 To do this, download ngrok ([ngrok.com/download](https://ngrok.com/download)) for the operating system you use and execute the following command in a new session of the terminal:
@@ -101,6 +101,7 @@ REACT_APP_WEBHOOK_URL={{PUBLIC_WEBHOOK_URL}}/api/link_token
 ### Prerequisites
 To run the applications directly it is necessary to have the language installed on your machine.
 * node (frontend and node applications): 10 or higher
+* python: 3.6.1 or higher
 * ruby: 2.7 or higher
 
 ### Commands
@@ -116,6 +117,19 @@ $ cd node
 $ npm install
 $ npm start
 ```
+
+* ### Python
+```shell
+$ cd python
+
+# optional: create a virtual environment to keep your dependencies clean
+$ virtualenv venv
+$ source ./venv/bin/activate
+
+$ pip install -r requirements.txt
+$ FLASK_APP=app.py flask run
+```
+
 * ### Ruby
 ```shell
 $ cd ruby
