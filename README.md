@@ -3,7 +3,7 @@
 **Fintoc Quickstart** is the repository that allows you to test Fintoc tools locally!
 The purpose of the repository is that you know how to integrate the Fintoc Widget and the SDKs that we offer for the different supported languages.
 **Fintoc Quickstart** is composed mainly by what we call a frontend application, which is an application written in [React](https://reactjs.org/) and that integrates the Fintoc [Widget](https://docs.fintoc.com/docs/usando-el-widget#flujo-del-widget), and also by backend applications which represent the backend and that use the SDKs that Fintoc provides. 
-Currently the languages supported by the Fintoc SDKs are: [**Node.js**](https://github.com/fintoc-com/fintoc-node), [**Ruby**](https://github.com/fintoc-com/fintoc-ruby) and [**Python**](https://github.com/fintoc-com/fintoc-python), but don't worry, we are working to support others!
+Currently the languages supported by the Fintoc SDKs are: [**Node.js**](https://github.com/fintoc-com/fintoc-node), [**Ruby**](https://github.com/fintoc-com/fintoc-ruby) and [**Python**](https://github.com/fintoc-com/fintoc-python), but if you are looking for another language do not worry, we are working to support others!
 
 <p align="center">
   <img src="_media/fintoc.png" />
