@@ -5,7 +5,6 @@ WORKDIR /opt/app
 
 COPY . .
 
-RUN ls
 RUN bundle install
 
 EXPOSE 5000
