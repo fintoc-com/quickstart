@@ -39,9 +39,9 @@ Clone the repository using your prefered terminal using any of the following com
 
 | Protocol   | Command                                                        |
 |------------|----------------------------------------------------------------|
-| HTTPS      | ```$ git clone https://github.com/fintoc-com/sample-app.git``` |
+| HTTPS      | ```$ git clone https://github.com/fintoc-com/quickstart.git``` |
 | SSH        | ```$ git clone git@github.com:fintoc-com/quickstart.git```     |
-| GitHub CLI | ```$ gh repo clone fintoc-com/sample-app```                    |
+| GitHub CLI | ```$ gh repo clone fintoc-com/quickstart```                    |
 
 And go to the **Fintoc Quickstart** directory:
 
