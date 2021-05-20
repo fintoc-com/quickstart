@@ -17,15 +17,15 @@ Currently the languages supported by the Fintoc SDKs are: [**Node.js**](https://
 * [3. Run Fintoc Quickstart](#3-run-fintoc-quickstart)
     * [3.1. Expose backend to internet (ngrok)](#31-expose-backend-to-internet-ngrok)
     * [3.2. Run](#32-run)
-        * [Prerequisites](#prerequisites)
-        * [Commands](#commands)
+        * [3.2.1. Prerequisites](#321-prerequisites)
+        * [3.2.2. Commands](#322-commands)
             * [Frontend](#frontend)
             * [Node](#node)
             * [Python](#python)
             * [Ruby](#ruby)
     * [3.3. Run + Docker](#33-run--docker)
-        * [Prerequisites](#prerequisites-1)
-        * [Commands](#commands-1)
+        * [3.3.1. Prerequisites](#331-prerequisites)
+        * [3.3.2. Commands](#332-commands)
             * [help](#help)
             * [start](#start)
             * [build](#build)
@@ -107,13 +107,13 @@ REACT_APP_WEBHOOK_URL=<NGROK_PUBLIC_WEBHOOK_URL>/api/link_token
 ```
 > **Important:** It is important that the public url (```NGROK_PUBLIC_WEBHOOK_URL```) is suffixed with the path ```/api/link_token```, since that is the webhook endpoint that the backend applications of this project have.
 ## 3.2. Run
-### Prerequisites
+### 3.2.1. Prerequisites
 To run the applications directly it is necessary to have the language installed on your machine.
 * **node (frontend & node):** 10 or higher
 * **python:** 3.6.1 or higher
 * **ruby:** 2.7 or higher
 
-### Commands
+### 3.2.2. Commands
 * #### Frontend
 ```shell
 $ cd frontend
@@ -146,12 +146,12 @@ $ ruby app.rb
 ```
 
 ## 3.3. Run + Docker
-### Prerequisites
+### 3.3.1. Prerequisites
 To run **Fintoc Quickstart** with **Docker** you need to have:
 * [**Docker**](https://docs.docker.com/get-docker/) 
 * [**GNU make**](https://www.gnu.org/software/make/manual/make.html)
 
-### Commands
+### 3.3.2. Commands
 * #### help
 Show commands and their options.
 ```shell
