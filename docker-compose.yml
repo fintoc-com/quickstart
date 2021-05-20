@@ -12,9 +12,7 @@ x-backend-ports: &backend-ports
 
 version: '3.8'
 services:
-  #############################
-  # Backend services
-  #############################
+  # Backend Services
   node:
     container_name: fintoc_node
     build:
@@ -42,9 +40,8 @@ services:
     environment:
       <<: *backend-environment
     networks: *backend-networks
-  #############################
+
   # Frontend services
-  #############################
   frontend:
     container_name: fintoc_frontend
     build:
