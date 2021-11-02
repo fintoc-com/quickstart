@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import logo from './imagotipo.svg';
-import AccountList from './Components/AccountList/AccountList';
 import ConnectLink from './Components/ConnectLink/ConnectLink';
-import MovementList from './Components/MovementList/MovementList';
+import InvoiceList from './Components/InvoiceList/InvoiceList';
 
 function App() {
   const [linkId, setLinkId] = useState('');
-  const [accountId, setAccountId] = useState('');
   return (
     <div className="container relative bg-white mx-auto">
       <header className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -15,11 +13,8 @@ function App() {
         </a>
       </header>
       {!linkId && <ConnectLink setLinkId={setLinkId} />}
-      {linkId && !accountId
-        && <AccountList linkId={linkId} setAccountId={setAccountId} setLinkId={setLinkId} />}
-      {linkId && accountId
-        && <MovementList linkId={linkId} accountId={accountId} setAccountId={setAccountId} />}
-
+      {linkId
+        && <InvoiceList linkId={linkId} setLinkId={setLinkId} />}
     </div>
   );
 }

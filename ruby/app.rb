@@ -3,6 +3,7 @@
 require 'dotenv'
 require 'sinatra'
 require 'fintoc'
+require 'httparty'
 Dotenv.load
 
 set :port, 5000
@@ -39,6 +40,19 @@ get '/api/accounts/:account_id/movements' do
       amount: movement.amount,
       description: movement.description }
   end.to_json
+end
+
+get '/api/invoices' do
+  last_month = Date.new(Date.today.year, Date.today.month - 1, 1)
+  url = 'https://api.fintoc.com/v1/invoices'
+  headers = { Authorization: ENV['SECRET_KEY'] }
+  content_type :json
+  response = HTTParty.get(
+    url,
+    query: { since: last_month, link_token: link_token },
+    headers: headers
+  )
+  response.body.to_json
 end
 
 post '/api/link_token' do

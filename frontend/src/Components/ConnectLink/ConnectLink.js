@@ -4,7 +4,7 @@ import useScript from 'react-script-hook';
 const widgetOptions = {
   publicKey: process.env.REACT_APP_PUBLIC_KEY,
   holderType: 'individual', // business or individual
-  product: 'movements', // movements or suscription
+  product: 'invoices', // movements, suscription or invoices
   webhookUrl: process.env.REACT_APP_WEBHOOK_URL,
 };
 
