@@ -6,7 +6,7 @@ The purpose of the repository is that you know how to integrate the Fintoc Widge
 Currently the languages supported by the Fintoc SDKs are: [**Node.js**](https://github.com/fintoc-com/fintoc-node), [**Ruby**](https://github.com/fintoc-com/fintoc-ruby) and [**Python**](https://github.com/fintoc-com/fintoc-python), but if you are looking for another language do not worry, we are working to support others!
 
 <p align="center">
-  <img src="_media/fintoc.png" />
+  <img src="_media/Logo-Fintoc-White-2024.svg" width="30%"/>
 </p>
 
 # Table of content
